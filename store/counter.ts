@@ -13,6 +13,7 @@ export const useCounterStore = defineStore({
   },
   actions: {
     multiple() {
+      console.log('multple')
       this.count = this.count * 2
     }
   },
