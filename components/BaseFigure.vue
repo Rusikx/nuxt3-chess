@@ -60,6 +60,7 @@ export default {
       b: getRemember.value.y
     })
 
+    // eslint-disable-next-line vue/no-dupe-keys
     return { clickMove, code: props.code, figureImage }
   }
 }

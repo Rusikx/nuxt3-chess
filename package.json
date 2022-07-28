@@ -7,12 +7,22 @@
     "preview": "nuxt preview",
     "lint": "eslint --ext .ts,.js,.vue ."
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,vue}": "eslint --ext .ts,.js,.vue . --fix"
+  },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "eslint": "^8.20.0",
     "eslint-plugin-vue": "^9.3.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "nuxt": "3.0.0-rc.6",
     "sass": "^1.54.0",
     "typescript": "^4.7.4",

@@ -1,14 +1,14 @@
 <template>
   <div class="board">
-    <template v-for="(row, i) in getInitial" :key="`row-${i}`">
-      <template v-for="(cell, j) in row" :key="`cell-${j}`">
+    <div v-for="(row, i) in getInitial" :key="`row-${i}`">
+      <div v-for="(cell, j) in row" :key="`cell-${j}`">
         <TheCell
           :position="{x: i, y: j}"
           :figure="getFigure({x:i, y: j})"
           :is-white="cell !== 1"
         />
-      </template>
-    </template>
+      </div>
+    </div>
   </div>
 </template>
 

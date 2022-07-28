@@ -8,8 +8,10 @@
 </template>
 
 <script lang="ts">
+import { SymbolKind } from 'vscode-languageserver-types'
 import BaseFigure from '~/components/BaseFigure.vue'
 import { BoardPosition } from '~/types/board'
+import Object = SymbolKind.Object
 
 interface Props {
   position: BoardPosition,
@@ -25,7 +27,9 @@ export default {
     figure: Number,
     isWhite: Boolean
   },
-  setup: (props: Props) => props
+  setup (props: Props) {
+    return { props }
+  }
 }
 </script>
 
