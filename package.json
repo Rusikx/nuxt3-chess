@@ -4,11 +4,19 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "lint": "eslint --ext .ts,.js,.vue ."
   },
   "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
+    "eslint-plugin-vue": "^9.3.0",
     "nuxt": "3.0.0-rc.6",
-    "sass": "^1.54.0"
+    "sass": "^1.54.0",
+    "typescript": "^4.7.4",
+    "vite-plugin-eslint": "^1.7.0"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.3.1",

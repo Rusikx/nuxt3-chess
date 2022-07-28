@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import TheBoard from "./components/TheBoard";
+import TheBoard from './components/TheBoard'
 
 export default {
-  components: {TheBoard}
+  components: { TheBoard }
 }
 </script>

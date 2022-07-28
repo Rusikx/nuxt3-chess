@@ -1,18 +1,18 @@
 <template>
   <div class="figure" @click="clickMove">
     <img
-        v-if="code && figureImage"
-        :src="`../../static/figures/${figureImage}`"
-        alt=""
-    />
+      v-if="code && figureImage"
+      :src="`../../static/figures/${figureImage}`"
+      alt=""
+    >
   </div>
 </template>
 
 <script lang="ts">
-import { BoardPosition } from "~/types/board";
 import { storeToRefs } from 'pinia'
-import { useBoardStore  } from '~~/store/board'
-import { figures } from "~/configs/figures";
+import { BoardPosition } from '~/types/board'
+import { useBoardStore } from '~~/store/board'
+import { figures } from '~/configs/figures'
 
 interface Props {
   code: number,
@@ -23,9 +23,9 @@ export default {
   name: 'BaseFigure',
   props: {
     code: Number,
-    position: Object,
+    position: Object
   },
-  setup(props: Props) {
+  setup (props: Props) {
     const board = useBoardStore() // state
 
     const { setMove, setRemember, setFirstClick } = board // actions
@@ -33,35 +33,35 @@ export default {
 
     if (getFirstClick) {
       setRemember(
-          {
-            x: props.position.x,
-            y: props.position.y,
-          }
+        {
+          x: props.position.x,
+          y: props.position.y
+        }
       )
     } else {
       setMove(
-          {
-            x: props.position.x,
-            y: props.position.y,
-            a: getRemember.value.x,
-            b: getRemember.value.y,
-          }
+        {
+          x: props.position.x,
+          y: props.position.y,
+          a: getRemember.value.x,
+          b: getRemember.value.y
+        }
       )
     }
 
     setFirstClick(!getFirstClick)
 
-    const figureImage = figures.find((s) => s.index === props.code)?.image.white
+    const figureImage = figures.find(s => s.index === props.code)?.image.white
 
     const clickMove = () => setMove({
       x: props.position.x,
       y: props.position.y,
       a: getRemember.value.x,
-      b: getRemember.value.y,
+      b: getRemember.value.y
     })
 
     return { clickMove, code: props.code, figureImage }
-  },
+  }
 }
 </script>
 

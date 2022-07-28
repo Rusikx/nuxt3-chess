@@ -12,14 +12,13 @@ export const useCounterStore = defineStore({
     }
   },
   actions: {
-    multiple() {
-      console.log('multple')
+    multiple () {
       this.count = this.count * 2
     }
   },
   getters: {
     actualCount: state => state.count,
-    doubleCount() {
+    doubleCount () {
       return this.count * 2
     }
   }

@@ -1,15 +1,15 @@
 <template>
   <div
-      class="cell"
-      :class="{'cell--white': isWhite, 'cell--black': !isWhite}"
+    class="cell"
+    :class="{'cell--white': isWhite, 'cell--black': !isWhite}"
   >
     <BaseFigure :code="figure" :position="position" />
   </div>
 </template>
 
 <script lang="ts">
-import BaseFigure from "~/components/BaseFigure.vue";
-import { BoardPosition } from "~/types/board";
+import BaseFigure from '~/components/BaseFigure.vue'
+import { BoardPosition } from '~/types/board'
 
 interface Props {
   position: BoardPosition,
@@ -19,13 +19,13 @@ interface Props {
 
 export default {
   name: 'TheCell',
-  components: {BaseFigure},
+  components: { BaseFigure },
   props: {
     position: Object,
     figure: Number,
-    isWhite: Boolean,
+    isWhite: Boolean
   },
-  setup: (props: Props) => props,
+  setup: (props: Props) => props
 }
 </script>
 
