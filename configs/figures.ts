@@ -1,5 +1,6 @@
 export const figures = [
   {
+    index: 1,
     code: 'pawn',
     name: 'Пешка',
     image: {
@@ -8,6 +9,7 @@ export const figures = [
     },
   },
   {
+    index: 2,
     code: 'bishop',
     name: 'Слон',
     image: {
@@ -16,6 +18,7 @@ export const figures = [
     },
   },
   {
+    index: 3,
     code: 'knight',
     name: 'Конь',
     image: {
@@ -24,6 +27,7 @@ export const figures = [
     },
   },
   {
+    index: 4,
     code: 'rook',
     name: 'Ладья',
     image: {
@@ -32,6 +36,7 @@ export const figures = [
     },
   },
   {
+    index: 5,
     code: 'queen',
     name: 'Королева',
     image: {
@@ -40,6 +45,7 @@ export const figures = [
     },
   },
   {
+    index: 6,
     code: 'king',
     name: 'Король',
     image: {

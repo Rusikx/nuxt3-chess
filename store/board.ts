@@ -3,7 +3,7 @@ import { BoardPosition, BoardPositionLine } from "~/types/board";
 import { Cell } from "~/types/cell";
 
 interface State {
-    default: Cell[],
+    initial: Cell[],
     active: Cell[],
     remember: BoardPosition,
     firstClick: boolean,
@@ -13,7 +13,7 @@ export const useBoardStore = defineStore({
     id: 'board-store',
     state: (): State => {
         return {
-            default: [
+            initial: [
                 [0, 1, 0, 1, 0, 1, 0, 1],
                 [1, 0, 1, 0, 1, 0, 1, 0],
                 [0, 1, 0, 1, 0, 1, 0, 1],
@@ -24,23 +24,20 @@ export const useBoardStore = defineStore({
                 [1, 0, 1, 0, 1, 0, 1, 0],
             ],
             active: [
-                [3, 2, 4, 5, 6, 4, 2, 3],
+                [4, 3, 2, 5, 6, 2, 3, 4],
                 [1, 1, 1, 1, 1, 1, 1, 1],
                 [0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0],
                 [1, 1, 1, 1, 1, 1, 1, 1],
-                [3, 2, 4, 6, 5, 4, 2, 3],
+                [4, 3, 2, 5, 6, 2, 3, 4],
             ],
             remember: {x: 0, y: 0},
             firstClick: true,
         }
     },
     actions: {
-        // setMove(value: BoardPositionLine) {
-        //     this.active[value.x][value.y] = this.active[value.a][value.b]
-        // },
         setMove(value: BoardPositionLine) {
             const duplicate = JSON.parse(JSON.stringify(this.active))
             duplicate[value.x][value.y] = duplicate[value.a][value.b]
@@ -56,9 +53,9 @@ export const useBoardStore = defineStore({
         },
     },
     getters: {
-        default: (state) => state.default,
-        active: (state) => state.active,
-        remember: (state) => state.remember,
-        firstClick: (state) => state.firstClick,
+        getInitial: (state) => state.initial,
+        getActive: (state) => state.active,
+        getRemember: (state) => state.remember,
+        getFirstClick: (state) => state.firstClick,
     }
 })

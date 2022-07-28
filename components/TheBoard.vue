@@ -1,44 +1,36 @@
 <template>
   <div class="board">
-    <template v-for="(row, i) in boardDefault">
-      <TheCell
-        v-for="(cell, j) in row"
-        :key="`${i}-${j}`"
-        :position="{i, j}"
-        :figure="getFigure(i, j)"
-        :is-white="cell !== 1"
-      />
+    <template :key="`row-${i}`" v-for="(row, i) in getInitial">
+      <template :key="`cell-${j}`" v-for="(cell, j) in row">
+        <TheCell
+          :position="{x:i, y:j}"
+          :figure="getFigure({x:i, y:j})"
+          :is-white="cell !== 1"
+        />
+      </template>
     </template>
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex'
-import TheCell from "../organisms/TheCell";
+<script lang="ts">
+import {useBoardStore} from "~/store/board";
+import {storeToRefs} from "pinia";
+import { BoardPosition } from "~/types/board";
+import TheCell from "~/components/TheCell.vue";
 
 export default {
   name: "TheBoard",
-  components: {
-    TheCell,
-  },
-  data() {
-    return {
-      COUNT_CELL: 64,
+  components: {TheCell},
+  setup() {
+    const board = useBoardStore() // state
+
+    const { getInitial, getActive } = storeToRefs(board) // getters
+
+    const getFigure = (value: BoardPosition) => {
+      return getActive.value[value.x][value.y]
     }
-  },
-  computed: {
-    ...mapGetters({
-      boardDefault: 'board/default',
-      boardActive: 'board/active',
-    }),
-  },
-  methods: {
-    move(x, y, a, b) {
-      this.$store.commit('board/SET_MOVE', {x, y, a, b})
-    },
-    getFigure(i, j) {
-      return this.boardActive[i][j]
-    },
+
+    return { getInitial, getFigure }
   },
 }
 </script>

@@ -6,28 +6,26 @@
     <BaseFigure :code="figure" :position="position" />
   </div>
 </template>
-<script>
-import BaseFigure from '~/components/atoms/BaseFigure'
+
+<script lang="ts">
+import BaseFigure from "~/components/BaseFigure.vue";
+import { BoardPosition } from "~/types/board";
+
+interface Props {
+  position: BoardPosition,
+  figure: number,
+  isWhite: boolean,
+}
 
 export default {
   name: 'TheCell',
-  components: {
-    BaseFigure,
-  },
+  components: {BaseFigure},
   props: {
-    position: {
-      type: Object,
-      required: true,
-    },
-    isWhite: {
-      type: Boolean,
-      required: true,
-    },
-    figure: {
-      type: Number,
-      required: false,
-    },
+    position: Object,
+    figure: Number,
+    isWhite: Boolean,
   },
+  setup: (props: Props) => props,
 }
 </script>
 

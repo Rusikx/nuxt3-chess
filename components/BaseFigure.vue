@@ -1,7 +1,7 @@
 <template>
-  <div class="figure" @click="move">
+  <div class="figure" @click="clickMove">
     <img
-        v-if="code"
+        v-if="code && figureImage"
         :src="`../../static/figures/${figureImage}`"
         alt=""
     />
@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts">
+import { BoardPosition } from "~/types/board";
 import { storeToRefs } from 'pinia'
 import { useBoardStore  } from '~~/store/board'
-import { BoardPosition } from "~/types/board";
 import { figures } from "~/configs/figures";
 
 interface Props {
@@ -21,36 +21,51 @@ interface Props {
 
 export default {
   name: 'BaseFigure',
+  props: {
+    code: Number,
+    position: Object,
+  },
   setup(props: Props) {
     const board = useBoardStore() // state
 
     const { setMove, setRemember, setFirstClick } = board // actions
-    const { remember, firstClick } = storeToRefs(board) // getters
+    const { getRemember, getFirstClick } = storeToRefs(board) // getters
 
-    if (firstClick) {
+    if (getFirstClick) {
       setRemember(
-          props.position.x,
-          props.position.y,
+          {
+            x: props.position.x,
+            y: props.position.y,
+          }
       )
     } else {
       setMove(
-          props.position.x,
-          props.position.y,
-          remember.x,
-          remember.y,
+          {
+            x: props.position.x,
+            y: props.position.y,
+            a: getRemember.value.x,
+            b: getRemember.value.y,
+          }
       )
     }
 
-    setFirstClick(!firstClick)
+    setFirstClick(!getFirstClick)
 
-    const figureImage = figures[props.code].url.white
+    const figureImage = figures.find((s) => s.index === props.code)?.image.white
 
-    return { move, code: props.code, figureImage }
+    const clickMove = () => setMove({
+      x: props.position.x,
+      y: props.position.y,
+      a: getRemember.value.x,
+      b: getRemember.value.y,
+    })
+
+    return { clickMove, code: props.code, figureImage }
   },
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .figure {
   width: 100%;
   height: 100%;

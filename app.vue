@@ -1,11 +1,11 @@
 <template>
-  <HelloRus />
+  <TheBoard />
 </template>
 
 <script>
-import HelloRus from "./components/HelloRus";
+import TheBoard from "./components/TheBoard";
 
 export default {
-  components: {HelloRus}
+  components: {TheBoard}
 }
 </script>
