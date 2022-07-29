@@ -3,7 +3,7 @@
     <div v-for="(row, i) in getInitial" :key="`row-${i}`">
       <div v-for="(cell, j) in row" :key="`cell-${j}`">
         <TheCell
-          :position="{x: i, y: j}"
+          :position="{x:i, y:j}"
           :figure="getFigure({x:i, y: j})"
           :is-white="cell !== 1"
         />

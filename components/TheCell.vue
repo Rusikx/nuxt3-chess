@@ -8,10 +8,8 @@
 </template>
 
 <script lang="ts">
-import { SymbolKind } from 'vscode-languageserver-types'
 import BaseFigure from '~/components/BaseFigure.vue'
 import { BoardPosition } from '~/types/board'
-import Object = SymbolKind.Object
 
 interface Props {
   position: BoardPosition,
