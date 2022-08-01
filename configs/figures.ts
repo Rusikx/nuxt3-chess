@@ -5,8 +5,8 @@ export const figures = [
     name: 'Пешка',
     image: {
       white: 'pawn-white.png',
-      black: 'pawn-black.png',
-    },
+      black: 'pawn-black.png'
+    }
   },
   {
     index: 2,
@@ -14,8 +14,8 @@ export const figures = [
     name: 'Слон',
     image: {
       white: 'bishop-white.png',
-      black: 'bishop-white.png',
-    },
+      black: 'bishop-white.png'
+    }
   },
   {
     index: 3,
@@ -23,8 +23,8 @@ export const figures = [
     name: 'Конь',
     image: {
       white: 'knight-white.png',
-        black: 'knight-white.png',
-    },
+      black: 'knight-white.png'
+    }
   },
   {
     index: 4,
@@ -32,8 +32,8 @@ export const figures = [
     name: 'Ладья',
     image: {
       white: 'rook-white.png',
-      black: 'rook-white.png',
-    },
+      black: 'rook-white.png'
+    }
   },
   {
     index: 5,
@@ -41,8 +41,8 @@ export const figures = [
     name: 'Королева',
     image: {
       white: 'queen-white.png',
-      black: 'queen-white.png',
-    },
+      black: 'queen-white.png'
+    }
   },
   {
     index: 6,
@@ -50,7 +50,7 @@ export const figures = [
     name: 'Король',
     image: {
       white: 'king-white.png',
-      black: 'king-white.png',
-    },
-  },
+      black: 'king-white.png'
+    }
+  }
 ]
