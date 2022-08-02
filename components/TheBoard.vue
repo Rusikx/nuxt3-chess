@@ -3,8 +3,8 @@
     <div v-for="(row, i) in getInitial" :key="`row-${i}`">
       <div v-for="(cell, j) in row" :key="`cell-${j}`">
         <TheCell
-          :position="{x:i, y:j}"
-          :figure="getFigure({x:i, y: j})"
+          :position="{x:j, y:i}"
+          :figure="getFigure(getActive, {x:j, y: i})"
           :is-white="cell !== 1"
         />
       </div>
@@ -26,11 +26,11 @@ export default {
 
     const { getInitial, getActive } = storeToRefs(board) // getters
 
-    const getFigure = (value: BoardPosition) => {
-      return getActive.value[value.x][value.y]
+    const getFigure = (list, value: BoardPosition) => {
+      return list[value.x][value.y]
     }
 
-    return { getInitial, getFigure }
+    return { getInitial, getActive, getFigure }
   }
 }
 </script>

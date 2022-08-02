@@ -1,5 +1,5 @@
 <template>
-  <div class="figure" @click="clickMove">
+  <div class="figure" @click="clickMove(getFirstClick)">
     <img
       v-if="code && figureImage"
       :src="`../../static/figures/${figureImage}`"
@@ -29,39 +29,34 @@ export default {
     const board = useBoardStore() // state
 
     const { setMove, setRemember, setFirstClick } = board // actions
-    const { getRemember, getFirstClick } = storeToRefs(board) // getters
-
-    if (getFirstClick) {
-      setRemember(
-        {
-          x: props.position.x,
-          y: props.position.y
-        }
-      )
-    } else {
-      setMove(
-        {
-          x: props.position.x,
-          y: props.position.y,
-          a: getRemember.value.x,
-          b: getRemember.value.y
-        }
-      )
-    }
-
-    setFirstClick(!getFirstClick)
+    const { getFirstClick } = storeToRefs(board) // getters
 
     const figureImage = figures.find(s => s.index === props.code)?.image.white
 
-    const clickMove = () => setMove({
-      x: props.position.x,
-      y: props.position.y,
-      a: getRemember.value.x,
-      b: getRemember.value.y
-    })
+    const clickMove = (firstClick: boolean) => {
+      if (firstClick) {
+        setRemember(
+          {
+            x: props.position.x,
+            y: props.position.y
+          }
+        )
+      } else {
+        setMove(
+          {
+            x: props.position.x,
+            y: props.position.y,
+            a: board.getRemember.x,
+            b: board.getRemember.y
+          }
+        )
+      }
+
+      setFirstClick(!getFirstClick)
+    }
 
     // eslint-disable-next-line vue/no-dupe-keys
-    return { clickMove, code: props.code, figureImage }
+    return { clickMove, getFirstClick, code: props.code, figureImage }
   }
 }
 </script>

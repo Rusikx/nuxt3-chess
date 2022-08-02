@@ -39,23 +39,30 @@ export const useBoardStore = defineStore({
   },
   actions: {
     setMove (value: BoardPositionLine) {
-      const duplicate = JSON.parse(JSON.stringify(this.active))
-      duplicate[value.x][value.y] = duplicate[value.a][value.b]
-      duplicate[value.a][value.b] = 0
-
-      this.active = duplicate
+      if (this.active[value.a][value.b] !== 0) {
+        this.active[value.x][value.y] = this.active[value.a][value.b]
+        this.active[value.a][value.b] = 0
+      }
     },
     setRemember (value: BoardPosition) {
-      this.remember = value
+      if (this.active[value.x][value.y] !== 0) {
+        this.remember = value
+      }
     },
     setFirstClick (value: boolean) {
       this.firstClick = value
     }
   },
   getters: {
-    getInitial: state => state.initial,
-    getActive: state => state.active,
+    getInitial (): object {
+      return this.initial
+    },
+    getActive (): object {
+      return this.active
+    },
     getRemember: state => state.remember,
-    getFirstClick: state => state.firstClick
+    getFirstClick (): boolean {
+      return this.firstClick
+    }
   }
 })
