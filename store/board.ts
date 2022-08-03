@@ -6,7 +6,6 @@ interface State {
     initial: Cell[],
     active: Cell[],
     remember: BoardPosition,
-    firstClick: boolean,
 }
 
 export const useBoardStore = defineStore({
@@ -33,8 +32,7 @@ export const useBoardStore = defineStore({
         [1, 1, 1, 1, 1, 1, 1, 1],
         [4, 3, 2, 5, 6, 2, 3, 4]
       ],
-      remember: { x: 0, y: 0 },
-      firstClick: true
+      remember: { x: 0, y: 0 }
     }
   },
   actions: {
@@ -42,15 +40,13 @@ export const useBoardStore = defineStore({
       if (this.active[value.a][value.b] !== 0) {
         this.active[value.x][value.y] = this.active[value.a][value.b]
         this.active[value.a][value.b] = 0
+        this.remember = { x: 0, y: 0 }
       }
     },
     setRemember (value: BoardPosition) {
       if (this.active[value.x][value.y] !== 0) {
         this.remember = value
       }
-    },
-    setFirstClick (value: boolean) {
-      this.firstClick = value
     }
   },
   getters: {
@@ -60,9 +56,8 @@ export const useBoardStore = defineStore({
     getActive (): object {
       return this.active
     },
-    getRemember: state => state.remember,
-    getFirstClick (): boolean {
-      return this.firstClick
+    getRemember (): object {
+      return this.remember
     }
   }
 })

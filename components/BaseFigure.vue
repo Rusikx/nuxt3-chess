@@ -1,5 +1,5 @@
 <template>
-  <div class="figure" @click="clickMove(getFirstClick)">
+  <div class="figure">
     <img
       v-if="code && figureImage"
       :src="`../../static/figures/${figureImage}`"
@@ -9,9 +9,7 @@
 </template>
 
 <script lang="ts">
-import { storeToRefs } from 'pinia'
 import { BoardPosition } from '~/types/board'
-import { useBoardStore } from '~~/store/board'
 import { figures } from '~/configs/figures'
 
 interface Props {
@@ -26,37 +24,10 @@ export default {
     position: Object
   },
   setup (props: Props) {
-    const board = useBoardStore() // state
-
-    const { setMove, setRemember, setFirstClick } = board // actions
-    const { getFirstClick } = storeToRefs(board) // getters
-
     const figureImage = figures.find(s => s.index === props.code)?.image.white
 
-    const clickMove = (firstClick: boolean) => {
-      if (firstClick) {
-        setRemember(
-          {
-            x: props.position.x,
-            y: props.position.y
-          }
-        )
-      } else {
-        setMove(
-          {
-            x: props.position.x,
-            y: props.position.y,
-            a: board.getRemember.x,
-            b: board.getRemember.y
-          }
-        )
-      }
-
-      setFirstClick(!getFirstClick)
-    }
-
     // eslint-disable-next-line vue/no-dupe-keys
-    return { clickMove, getFirstClick, code: props.code, figureImage }
+    return { code: props.code, figureImage }
   }
 }
 </script>

@@ -30,7 +30,7 @@ export default {
       return list[value.x][value.y]
     }
 
-    return { getInitial, getActive, getFigure }
+    return { getInitial, getFigure, getActive }
   }
 }
 </script>
