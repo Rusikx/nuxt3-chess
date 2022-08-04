@@ -20,7 +20,6 @@ export const useBoardStore = defineStore({
   },
   actions: {
     setMove (value: BoardPositionLine) {
-      console.log(value, 'BoardPositionLine')
       if (this.active[value.a][value.b] !== 0) {
         this.active[value.x][value.y] = this.active[value.a][value.b]
         this.active[value.a][value.b] = 0
