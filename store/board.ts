@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { BoardPosition, BoardPositionLine } from '~/types/board'
 import { Cell } from '~/types/cell'
+import { boardActive, boardInitial, initialRemember } from '~/configs/initialValues'
 
 interface State {
     initial: Cell[],
@@ -12,31 +13,14 @@ export const useBoardStore = defineStore({
   id: 'board-store',
   state: (): State => {
     return {
-      initial: [
-        [0, 1, 0, 1, 0, 1, 0, 1],
-        [1, 0, 1, 0, 1, 0, 1, 0],
-        [0, 1, 0, 1, 0, 1, 0, 1],
-        [1, 0, 1, 0, 1, 0, 1, 0],
-        [0, 1, 0, 1, 0, 1, 0, 1],
-        [1, 0, 1, 0, 1, 0, 1, 0],
-        [0, 1, 0, 1, 0, 1, 0, 1],
-        [1, 0, 1, 0, 1, 0, 1, 0]
-      ],
-      active: [
-        [4, 3, 2, 5, 6, 2, 3, 4],
-        [1, 1, 1, 1, 1, 1, 1, 1],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [1, 1, 1, 1, 1, 1, 1, 1],
-        [4, 3, 2, 5, 6, 2, 3, 4]
-      ],
-      remember: { x: 0, y: 0 }
+      initial: [...boardInitial],
+      active: [...boardActive],
+      remember: { ...initialRemember }
     }
   },
   actions: {
     setMove (value: BoardPositionLine) {
+      console.log(value, 'BoardPositionLine')
       if (this.active[value.a][value.b] !== 0) {
         this.active[value.x][value.y] = this.active[value.a][value.b]
         this.active[value.a][value.b] = 0
