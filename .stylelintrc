@@ -7,9 +7,6 @@
   "plugins": [
     "stylelint-order"
   ],
-  "ignoreFiles": [
-    "coverage"
-  ],
   "rules": {
     "order/order": [
       "custom-properties",
