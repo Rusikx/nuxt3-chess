@@ -38,4 +38,12 @@ describe('Use Board Store', () => {
     expect(store.active[testValue.a][testValue.b]).toStrictEqual(0)
     expect(store.remember).toStrictEqual(initialRemember)
   })
+
+  test('set remember', () => {
+    const testValue = { x: 6, y: 7 }
+
+    store.setRemember(testValue)
+
+    expect(store.remember).toStrictEqual(testValue)
+  })
 })
