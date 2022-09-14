@@ -1,3 +1,5 @@
+# <a href="https://rusikx.github.io/nuxt3-chess/" target="_blank">nuxt3-chess</a>
+
 # Nuxt 3 Minimal Starter
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
