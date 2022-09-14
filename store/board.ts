@@ -19,10 +19,18 @@ export const useBoardStore = defineStore({
     }
   },
   actions: {
+    setBoardActive (value: BoardPositionLine) {
+      this.active = value
+    },
     setMove (value: BoardPositionLine) {
-      if (this.active[value.a][value.b] !== 0) {
+      console.log(value)
+      console.log(value.a !== value.x && value.b !== value.y)
+      if (
+        this.active[value.a][value.b] !== 0 &&
+        (value.a !== value.x || value.b !== value.y)
+      ) {
         this.active[value.x][value.y] = this.active[value.a][value.b]
-        this.active[value.a][value.b] = 0
+        this.active[value.a][value.b] = null
         this.remember = { x: 0, y: 0 }
       }
     },

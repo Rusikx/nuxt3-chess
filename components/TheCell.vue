@@ -4,7 +4,7 @@
     :class="{'cell--white': isWhite, 'cell--black': !isWhite}"
     @click="clickMove"
   >
-    <BaseFigure v-if="figure" :code="figure" :position="position" />
+    <BaseFigure v-if="figure" :figure="figure" :position="position" />
   </div>
 </template>
 
@@ -12,11 +12,12 @@
 import { storeToRefs } from 'pinia'
 import BaseFigure from '~/components/BaseFigure.vue'
 import { BoardPosition } from '~/types/board'
+import { FigureActive } from '~/types/figure'
 import { useBoardStore } from '~/store/board'
 
 interface Props {
   position: BoardPosition,
-  figure: number,
+  figure: FigureActive,
   isWhite: boolean,
 }
 
@@ -25,7 +26,7 @@ export default {
   components: { BaseFigure },
   props: {
     position: Object,
-    figure: Number,
+    figure: Object,
     isWhite: Boolean
   },
   setup (props: Props) {
@@ -44,7 +45,7 @@ export default {
             b: getRemember.value.y
           }
         )
-      } else {
+      } else if (props.figure) {
         setRemember(
           {
             x: props.position.x,

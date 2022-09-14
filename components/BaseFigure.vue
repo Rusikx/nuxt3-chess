@@ -1,7 +1,7 @@
 <template>
   <div class="figure">
     <img
-      v-if="code && figureImage"
+      v-if="figureImage"
       :src="`../../static/figures/${figureImage}`"
       alt=""
     >
@@ -10,24 +10,30 @@
 
 <script lang="ts">
 import { BoardPosition } from '~/types/board'
+import { FigureActive } from '~/types/figure'
 import { figures } from '~/configs/figures'
 
 interface Props {
-  code: number,
+  figure: FigureActive,
   position: BoardPosition,
 }
 
 export default {
   name: 'BaseFigure',
   props: {
-    code: Number,
+    figure: Object,
     position: Object
   },
   setup (props: Props) {
-    const figureImage = figures.find(s => s.index === props.code)?.image.white
+    const figureImages = figures.find(s => s.key === props.figure.type)?.image
+    let figureImage = figureImages.black
+
+    if (props.figure.color === 'w') {
+      figureImage = figureImages.white
+    }
 
     // eslint-disable-next-line vue/no-dupe-keys
-    return { code: props.code, figureImage }
+    return { figureImage }
   }
 }
 </script>

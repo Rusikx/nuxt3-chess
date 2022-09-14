@@ -8,3 +8,8 @@ export interface Figure {
     name: string,
     image: FigureImage
 }
+
+export interface FigureActive {
+    type: string,
+    color: string,
+}

@@ -4,7 +4,7 @@
       <div v-for="(cell, j) in row" :key="`cell-${j}`">
         <TheCell
           :position="{x:j, y:i}"
-          :figure="getFigure(getActive, {x:j, y: i})"
+          :figure="getFigure(getActive, {x:j, y:i})"
           :is-white="cell !== 1"
         />
       </div>
