@@ -1,13 +1,16 @@
 {
   "private": true,
   "name": "nuxt3-chess",
+  "homepage": "https://Rusikx.github.io/nuxt3-chess",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "eslint --ext .ts,.js,.vue .",
-    "test": "vitest run --coverage"
+    "test": "vitest run --coverage",
+    "predeploy": "npm run build",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "husky": {
     "hooks": {
@@ -41,6 +44,8 @@
   "dependencies": {
     "@pinia/nuxt": "^0.3.1",
     "chess.ts": "^0.16.2",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "gh-pages": "^4.0.0",
+    "node": "16.13"
   }
 }
